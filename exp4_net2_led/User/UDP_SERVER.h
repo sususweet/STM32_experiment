@@ -12,10 +12,10 @@
 
 
 /***************开发板ip及MAC定义*************************/
-#define BOARD_IP  			 	192,168,1,11   		//开发板ip 
+#define BOARD_IP  			 	192,168,1,11   		//开发板ip
 #define BOARD_NETMASK   	 	255,255,255,0   		//开发板子网掩码
 #define BOARD_WG		   	 	192,168,1,1   			//开发板子网关
-#define BOARD_MAC_ADDR      	0,0,0,0,0,1				//开发板MAC地址
+#define BOARD_MAC_ADDR      	13,24,22,1,0,1				//开发板MAC地址
 
 #define UDP_LOCAL_PORT     		8000 
 #include "stm32f4xx.h"
