@@ -9,6 +9,8 @@
 #ifndef _LED_H_
 #define _LED_H_
 
+#include <cstdint>
+
 #define LED1_ON 		GPIO_ResetBits(GPIOE , GPIO_Pin_8)
 #define LED2_ON 		GPIO_ResetBits(GPIOE , GPIO_Pin_9)
 #define LED3_ON 		GPIO_ResetBits(GPIOE , GPIO_Pin_10)

@@ -11,7 +11,7 @@
 void NVIC_Configuration(void)
 {
 	
-	NVIC_InitTypeDef   NVIC_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
 	
 	/* Set the Vector Table base location at 0x08000000 */
 	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);
@@ -25,7 +25,7 @@ void NVIC_Configuration(void)
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 	
-//Timer3	
+    //Timer3
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;

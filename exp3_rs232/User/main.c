@@ -48,6 +48,7 @@ int main(void) {
         if (FileRcvCompleteFlag == 1)  //如果文件接收完毕
         {
             OLED_DrawBMP(0, 0, 128, 8, FileBuff);
+            FileRcvCompleteFlag = 0;
         }
     }
 }
