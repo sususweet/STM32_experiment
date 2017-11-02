@@ -1,0 +1,9 @@
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\src\api\netdb.c
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/netdb.h
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/opt.h
+.\obj\netdb.o: ..\User\lwipopts.h
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/debug.h
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/arch.h
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\port\STM32F4x7\arch/cc.h
+.\obj\netdb.o: ..\Utilities\Third_Party\lwip_v1.3.2\port\STM32F4x7\arch/cpu.h
+.\obj\netdb.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

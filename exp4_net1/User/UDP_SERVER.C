@@ -8,7 +8,7 @@
 #include <src/include/lwip/udp.h>
 #include "main.h"
 #include "UDP_SERVER.h"
-
+uint8_t UDP_Send_Data[] = "CM4 received";
 
 /***********************************************************************
 函数名称：udp_server_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p,struct ip_addr *addr, u16_t port)
@@ -24,9 +24,17 @@ void udp_server_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p,struct ip_ad
 	struct ip_addr destAddr = *addr; /* 获取远程主机 IP地址 */
 	struct pbuf *p_temp = p;
 	int i=0;
+
+    struct pbuf *pPbuf;
+
+    pPbuf = pbuf_alloc(PBUF_RAW,sizeof(UDP_Send_Data),PBUF_POOL);
+    pPbuf -> payload = (void *)UDP_Send_Data;       //把发送的数据首地址赋值给pbuf缓存中的payload
+    udp_sendto(pcb,pPbuf,&destAddr,port);           //向对应IP，端口发送字符信息
+    pbuf_free(pPbuf);                               //释放对应的pPbuf的空间
+
 	//while(p_temp != NULL)
 	{
-		/******将数据原样返回*******************/
+		/******将数据原样返回 CM4 received*******************/
 		
 		udp_sendto(pcb,p_temp,&destAddr,port); /* 将收到的数据再发送出去 */	
 		p_temp = p_temp->next;
