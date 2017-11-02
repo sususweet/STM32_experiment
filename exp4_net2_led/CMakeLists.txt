@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(exp4_net1)
+project(exp4_net2_led)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -26,8 +26,11 @@ set(SOURCE_FILES
         User/main.c
         User/netconf.c
         User/stm32f4x7_eth_bsp.c
+        User/SCI.c
+        User/I2C.c
+        User/CHINESE.c
         User/stm32f4xx_it.c
         User/system_stm32f4xx.c
         User/UDP_SERVER.C)
 
-add_executable(exp4_net1 ${SOURCE_FILES})
+add_executable(exp4_net2_led ${SOURCE_FILES})

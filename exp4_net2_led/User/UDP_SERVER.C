@@ -36,15 +36,21 @@ void udp_server_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_a
     uint16_t i = 0;
     while (p_temp != NULL)            //收到数据，开始进行帧操作。因为帧较短，所以本循环只进行第一次。
     {
+        Change_struct((unsigned char *)(p_temp->payload));
+        CheckRcvFrame();
 
         if (SframeFlag == 1 && RFrameFlag == 1) {
             //在此处填写代码
-            udp_sendto(pcb, p_temp, &destAddr, port); /* 返回确认帧 */
+            //udp_sendto(pcb, p_temp, &destAddr, port); /* 返回确认帧 */
+            SendFrame();
+            RFrameFlag = SframeFlag = 0;
         }
 
 
         if (FileRcvCompleteFlag == 1)        //接收到一个文件
         {
+            OLED_DrawBMP(0, 0, 128, 8, BMPx);
+            FileRcvCompleteFlag = 0;
             //在此处填写代码
         }
 
@@ -84,8 +90,9 @@ void Change_struct(unsigned char *temp) {
     }
     ReceivedFrame.SumH = temp[6 + temp[5]];
     ReceivedFrame.SumL = temp[7 + temp[5]];
-    if (ReceivedFrame.Flag == 0x7e && ReceivedFrame.Length <= 32)
-        SframeFlag = 1;
+    CheckFrameSum();        //make RFrameFlag = 1;
+    if (ReceivedFrame.Flag == 0x7e && ReceivedFrame.Length <= 32) SframeFlag = 1;
+    else SframeFlag = 0;
 }
 
 void CheckFrameSum(void) {
@@ -99,18 +106,8 @@ void CheckFrameSum(void) {
     for (i = 0; i < ReceivedFrame.Length; i++) {
         sum += (uint16_t) (ReceivedFrame.Data[i]);
     }
-    if (sum == (uint16_t) (ReceivedFrame.SumH * 256 + (uint16_t) (ReceivedFrame.SumL)))
-        RFrameFlag = 1;
-}
-
-void SetAckFrame(void) {
-    SendingFrame.Flag = 0x7f;
-    SendingFrame.SourceAddr = ReceivedFrame.DestAddr;
-    SendingFrame.DestAddr = ReceivedFrame.SourceAddr;
-    SendingFrame.Command = ReceivedFrame.Command;
-    SendingFrame.SerialN = ReceivedFrame.SerialN;
-    SendingFrame.Length = 1;
-    SendingFrame.Data[0] = 1;
+    if (sum == (uint16_t) (ReceivedFrame.SumH * 256 + (uint16_t) (ReceivedFrame.SumL))) RFrameFlag = 1;
+    else RFrameFlag = 0;
 }
 
 void CheckRcvFrame(void) {
@@ -126,7 +123,6 @@ void CheckRcvFrame(void) {
 
         case 0x01:
             if (((ReceivedFrame.SerialN - LastFrameSn) & 15) == 1) {
-
                 for (i = 0; i < ReceivedFrame.Length; i++) {
                     BMPx[FilePointer] = ReceivedFrame.Data[i];
                     FilePointer++;
@@ -137,9 +133,21 @@ void CheckRcvFrame(void) {
             break;
         case 0x81:
             FileRcvCompleteFlag = 1;
-            SetAckFrame();;
+            SetAckFrame();
+            break;
+        default:
             break;
     }
+}
+
+void SetAckFrame(void) {
+    SendingFrame.Flag = 0x7f;
+    SendingFrame.SourceAddr = ReceivedFrame.DestAddr;
+    SendingFrame.DestAddr = ReceivedFrame.SourceAddr;
+    SendingFrame.Command = ReceivedFrame.Command;
+    SendingFrame.SerialN = ReceivedFrame.SerialN;
+    SendingFrame.Length = 1;
+    SendingFrame.Data[0] = 1;
 }
 
 void SendFrame(void) {

@@ -1,7 +1,5 @@
 .\obj\i2c.o: ..\User\I2C.c
-.\obj\i2c.o: ..\User\main.h
-.\obj\i2c.o: ..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h
-.\obj\i2c.o: ..\User\stm32f4x7_eth_conf.h
+.\obj\i2c.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h
 .\obj\i2c.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\obj\i2c.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
 .\obj\i2c.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -37,6 +35,9 @@
 .\obj\i2c.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 .\obj\i2c.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\obj\i2c.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
+.\obj\i2c.o: ..\User\main.h
+.\obj\i2c.o: ..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h
+.\obj\i2c.o: ..\User\stm32f4x7_eth_conf.h
 .\obj\i2c.o: ..\User\stm32f4x7_eth_bsp.h
 .\obj\i2c.o: ..\User\netconf.h
 .\obj\i2c.o: ..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/tcp.h

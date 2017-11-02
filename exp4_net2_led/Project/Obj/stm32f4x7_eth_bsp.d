@@ -1,6 +1,5 @@
 .\obj\stm32f4x7_eth_bsp.o: ..\User\stm32f4x7_eth_bsp.c
-.\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h
-.\obj\stm32f4x7_eth_bsp.o: ..\User\stm32f4x7_eth_conf.h
+.\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
 .\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
 .\obj\stm32f4x7_eth_bsp.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -36,6 +35,8 @@
 .\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 .\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
+.\obj\stm32f4x7_eth_bsp.o: ..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h
+.\obj\stm32f4x7_eth_bsp.o: ..\User\stm32f4x7_eth_conf.h
 .\obj\stm32f4x7_eth_bsp.o: ..\User\stm32f4x7_eth_bsp.h
 .\obj\stm32f4x7_eth_bsp.o: ..\User\main.h
 .\obj\stm32f4x7_eth_bsp.o: ..\User\netconf.h
