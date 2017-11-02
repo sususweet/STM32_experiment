@@ -41,8 +41,16 @@ void udp_server_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_a
 
         if (SframeFlag == 1 && RFrameFlag == 1) {
             //在此处填写代码
-            //udp_sendto(pcb, p_temp, &destAddr, port); /* 返回确认帧 */
             SendFrame();
+
+            struct pbuf *pPbuf;
+            pPbuf = pbuf_alloc(PBUF_RAW,sizeof(kk),PBUF_POOL);
+            pPbuf -> payload = (void *)kk;       //把发送的数据首地址赋值给pbuf缓存中的payload
+            udp_sendto(pcb,pPbuf,&destAddr,port);           //向对应IP，端口发送字符信息
+            pbuf_free(pPbuf);                               //释放对应的pPbuf的空间
+
+            //udp_sendto(pcb, p_temp, &destAddr, port); /* 返回确认帧 */
+            
             RFrameFlag = SframeFlag = 0;
         }
 
